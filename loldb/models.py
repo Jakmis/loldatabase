@@ -1,0 +1,88 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
+
+# Create your models here.
+class Region(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Region name")
+
+    bio = models.TextField(verbose_name="Region biography", null=True, blank=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+class Champion(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Champion name")
+
+    title = models.CharField(max_length=50, verbose_name="Title")
+
+    bio = models.TextField(verbose_name="Champion biography")
+
+    quote = models.CharField(max_length=50, verbose_name="Quote")
+
+    releaseDate = models.DateField(help_text="Please use the following format: <em>YYYY-MM-DD</em>.", verbose_name="Champion release date")
+
+    priceBe = models.IntegerField(help_text="Enter price of champion in Blue Essence", validators=[MaxValueValidator(6300),MinValueValidator(450)], verbose_name="Price in Blue Essence")
+
+    regionName = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name="Region")
+
+    ROLE = (
+        ("assassin", "Assassin"),
+        ("fighter", "Fighter"),
+        ("mage", "Mage"),
+        ("marksman", "Marksman"),
+        ("support", "Support"),
+        ("tank",  "Tank"),
+    )
+
+    role = models.CharField(max_length=50, choices=ROLE, help_text="Select role of a champion")
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class Skin(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Skin name")
+
+    releaseDate = models.DateField(help_text="Please use the following format: <em>YYYY-MM-DD</em>.", verbose_name="Skin release date")
+
+    priceRp = models.IntegerField(help_text="Enter price of skin in Riot Points", validators=[MaxValueValidator(3250),MinValueValidator(390)])
+
+    championName = models.ForeignKey(Champion, on_delete=models.CASCADE, verbose_name="Champion name")
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+class Ability(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Ability name")
+
+    KEY = (
+        ("passive", "Passive"),
+        ("q", "Q"),
+        ("w", "W"),
+        ("e", "E"),
+        ("r", "R"),
+    )
+
+    key = models.CharField(max_length=7, choices=KEY, verbose_name="Select keyboard key of an ability")
+
+    description = models.TextField(verbose_name="Description of an ability")
+
+    championName = models.ForeignKey(Champion, on_delete=models.CASCADE, verbose_name="Champion name")
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f"{self.name}, Key: {str.upper(self.key)}, Champion: {str(self.championName)}"
+
+
+
