@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 ### Create user
 ```
-python manage.py superuser
+python manage.py createsuperuser
 ```
 ### Migrate database
 ```
