@@ -2,6 +2,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
+def champion_path(instance, filename, ):
+    return "champion/" + str(instance.championName) + "/skin/" + filename
+
 class Region(models.Model):
     name = models.CharField(max_length=50, verbose_name="Region name")
 
@@ -50,6 +53,8 @@ class Skin(models.Model):
     name = models.CharField(max_length=50, verbose_name="Skin name")
 
     releaseDate = models.DateField(help_text="Please use the following format: <em>YYYY-MM-DD</em>.", verbose_name="Skin release date")
+
+    skin = models.ImageField(upload_to=champion_path, blank=True, null=True, verbose_name="Skin")
 
     priceRp = models.IntegerField(help_text="Enter price of skin in Riot Points", validators=[MaxValueValidator(3250),MinValueValidator(390)])
 
