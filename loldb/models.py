@@ -1,12 +1,18 @@
+from distutils.command.upload import upload
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
-def champion_path(instance, filename, ):
+def champion_path(instance, filename):
     return "champion/" + str(instance.championName) + "/skin/" + filename
+
+def region_icon(instance, filename):
+    return "region/" + str(instance.name) + "/icon/" + filename
 
 class Region(models.Model):
     name = models.CharField(max_length=50, verbose_name="Region name")
+
+    icon = models.ImageField(upload_to=region_icon, verbose_name="Icon")
 
     bio = models.TextField(verbose_name="Region biography", null=True, blank=True)
 
@@ -88,6 +94,3 @@ class Ability(models.Model):
 
     def __str__(self):
         return f"{self.name}, Key: {str.upper(self.key)}, Champion: {str(self.championName)}"
-
-
-
