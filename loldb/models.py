@@ -12,7 +12,7 @@ def region_icon(instance, filename):
 class Region(models.Model):
     name = models.CharField(max_length=50, verbose_name="Region name")
 
-    icon = models.ImageField(upload_to=region_icon, verbose_name="Icon")
+    icon = models.ImageField(upload_to=region_icon, blank=True, null=True, verbose_name="Icon")
 
     bio = models.TextField(verbose_name="Region biography", null=True, blank=True)
 
@@ -30,6 +30,8 @@ class Champion(models.Model):
     bio = models.TextField(verbose_name="Champion biography")
 
     quote = models.CharField(max_length=50, verbose_name="Quote")
+
+    basicSkin = models.FileField(upload_to=champion_path, blank=True, null=True, verbose_name="Basic skin")
 
     releaseDate = models.DateField(help_text="Please use the following format: <em>YYYY-MM-DD</em>.", verbose_name="Champion release date")
 
@@ -91,6 +93,7 @@ class Ability(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "abilities"
 
     def __str__(self):
         return f"{self.name}, Key: {str.upper(self.key)}, Champion: {str(self.championName)}"
