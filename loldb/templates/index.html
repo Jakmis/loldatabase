@@ -1,4 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 
-
+{% block content %}
+<div class="row mt-3 mb-3 bg-warning p-3">
+  <div class="col-sm-12">
+    <h2 class="text-center">Alphabetical Champions name</h2>
+  </div>
+</div>
+<div class="row">
+  {% for champion in champions %}
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ champion.name }}</h4>
+        <p class="card-text">
+          <strong>Bio:</strong>
+          {{ champion.bio|truncatewords:30 }}
+        </p>
+        <p><strong>Title:</strong> {{ champion.title }}</p>
+        <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">More</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <strong>All counted Champions:</strong> {{ num_champions }}
+  </div>
+</div>
+{% endblock %}
