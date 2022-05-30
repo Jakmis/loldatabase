@@ -12,6 +12,9 @@
   {% for champion in champions %}
   <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
     <div class="card">
+      {% if champion.basicSkin %}
+      <img src="{{ champion.basicSkin.url }}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+      {% endif %}
       <div class="card-body">
         <!-- Odkaz ještě musí být doplněn o adresu stránky s detailem filmu -->
         <h4 class="card-title"><a href="{% url 'champions_detail' champion.pk %}">{{ champion.name }}</a></h4>

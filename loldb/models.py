@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 def champion_path(instance, filename):
-    return "champion/" + str(instance.championName) + "/skin/" + filename
+    return "champion/" + str(instance.name) + "/skin/" + filename
 
 def region_icon(instance, filename):
     return "region/" + str(instance.name) + "/icon/" + filename
@@ -31,7 +31,7 @@ class Champion(models.Model):
 
     quote = models.CharField(max_length=50, verbose_name="Quote")
 
-    basicSkin = models.FileField(upload_to=champion_path, blank=True, null=True, verbose_name="Basic skin")
+    basicSkin = models.ImageField(upload_to=champion_path, blank=True, null=True, verbose_name="Basic skin")
 
     releaseDate = models.DateField(help_text="Please use the following format: <em>YYYY-MM-DD</em>.", verbose_name="Champion release date")
 
