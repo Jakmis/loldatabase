@@ -1,6 +1,5 @@
 {% extends "base.html" %} {% block title %} List of Champions{% endblock %} 
 
-
 {%block content %}
 <div class="row mb-3">
   <div class="col-sm-12 bg-warning">
@@ -19,6 +18,7 @@
         <!-- Odkaz ještě musí být doplněn o adresu stránky s detailem filmu -->
         <h4 class="card-title"><a href="{% url 'champions_detail' champion.pk %}">{{ champion.name }}</a></h4>
         <p class="card-text">
+          {{ champion.regionName }}
         </p>
         <!-- Odkaz ještě musí být doplněn o adresu stránky s detailem filmu -->
         <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">More</a>

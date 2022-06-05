@@ -1,33 +1,42 @@
 {% extends 'base.html' %} 
 
 
-{% block content %}
-<div class="row mt-3 mb-3 bg-warning p-3">
-  <div class="col-sm-12">
-    <h2 class="text-center">Alphabetical Champions name</h2>
-  </div>
-</div>
-<div class="row">
-  {% for champion in champions %}
-  <div class="col-sm-4">
-    <div class="card">
-      <img src="" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-      <div class="card-body">
-        <h4 class="card-title">{{ champion.name }}</h4>
-        <p class="card-text">
-          <strong>Bio:</strong>
-          {{ champion.bio|truncatewords:30 }}
-        </p>
-        <p><strong>Title:</strong> {{ champion.title }}</p>
-        <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">More</a>
-      </div>
+{% block header %}
+  <div class="row gx-4 gx-lg-5 align-items-center my-5">
+    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
+    <div class="col-lg-5">
+        <h1 class="font-weight-light">The League of Legends Database!</h1>
+        <p>Learn about your favourite champion or explore lore and more!</p>
+        <a class="btn btn-primary" href="{% url 'champions' %}">Explore!</a>
     </div>
   </div>
-  {% endfor %}
+{% endblock header %}
+
+{% block content %}
+<div class="container px-4 px-lg-5">
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+  <div class="card-body"><p class="text-white m-0">There are {{ num_champions }} champions!</p></div>
 </div>
-<div class="row">
-  <div class="col-sm-12">
-    <strong>All counted Champions:</strong> {{ num_champions }}
+  <div class="row">
+    {% for champion in champions %}
+    
+    <div class="col-sm-4 mb-5">
+      <div class="card">
+        <img src="" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+        <div class="card-body">
+          <h4 class="card-title">{{ champion.name }}</h4>
+          
+          <p class="card-text">
+            <strong>Bio:</strong>
+            {{ champion.bio|truncatewords:30 }}
+          </p>
+          <p><strong>Title:</strong> {{ champion.title }}</p>
+          <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">More</a>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
