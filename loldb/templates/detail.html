@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}
-
-    {{ champions_detail.name }} 
-
-{% endblock title %}
+{% block title %} LOL | {{ champions_detail.name }} {% endblock title %}
 
 {% block content %}
 
-    {{ champions_detail.name }}
-    {{ champions_detail.regionName }}
+    <div class="container px-4 px-lg-5"> 
+        <div class="row gx-4 gx-lg-5 align-items-center my-5">
+            <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0 shadow bg-body" src="{{ champions_detail.basicSkin.url }}" alt="{{ champions_detail.name}}" /></div>
+            <div class="col-lg-5">
+                <h1 class="fw-bold">{{ champions_detail.name }}</h1>
+                <h5 class="fst-italic fw-normal">{{ champions_detail.title }}</h5>
+                <p>{{ champions_detail.bio }}</p>
+                <p class="fst-italic fw-normal text-center">"{{ champions_detail.quote }}" ~ {{champions_detail.name}} </p>
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-lg-6">
 
+            </div>
+        </div>
+
+    </div>
 {% endblock content %}
 

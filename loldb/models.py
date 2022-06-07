@@ -28,7 +28,7 @@ class Champion(models.Model):
 
     bio = models.TextField(verbose_name="Champion biography")
 
-    quote = models.CharField(max_length=50, verbose_name="Quote")
+    quote = models.CharField(max_length=100, verbose_name="Quote")
 
     basicSkin = models.ImageField(upload_to=champion_path, blank=True, null=True, verbose_name="Basic skin")
 

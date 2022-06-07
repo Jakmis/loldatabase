@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 
-
+{% load static%}
 {% block header %}
   <div class="row gx-4 gx-lg-5 align-items-center my-5">
-    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
+    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'img/logo.png' %}" alt="logo" /></div>
     <div class="col-lg-5">
         <h1 class="font-weight-light">The League of Legends Database!</h1>
         <p>Learn about your favourite champion or explore lore and more!</p>
@@ -21,17 +21,15 @@
     {% for champion in champions %}
     
     <div class="col-sm-4 mb-5">
-      <div class="card">
-        <img src="" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+      <div class="card shadow mb-5 bg-body rounded">
+        <img src="{{ champion.basicSkin.url }}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
         <div class="card-body">
           <h4 class="card-title">{{ champion.name }}</h4>
-          
+          <h6 class="card-subtitle mb-2 text-muted">{{ champion.title }}</h6>
           <p class="card-text">
-            <strong>Bio:</strong>
             {{ champion.bio|truncatewords:30 }}
           </p>
-          <p><strong>Title:</strong> {{ champion.title }}</p>
-          <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">More</a>
+          <a href="{% url 'champions_detail' champion.pk %}" class="btn btn-primary">Learn more!</a>
         </div>
       </div>
     </div>
