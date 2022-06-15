@@ -1,6 +1,6 @@
 # LOLDATABASE
 
-Loldatabase is a project based on a video game called League of legends using django framework.
+Loldatabase is a project based on a video game called League of Legends using Django framework.
 
 ## Instalation
 
