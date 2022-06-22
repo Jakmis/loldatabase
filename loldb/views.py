@@ -34,3 +34,17 @@ class ChampionDetailView(DetailView):
     context_object_name = 'champions_detail'
 
     template_name = 'detail.html'
+
+class RegionListView(ListView):
+    model = Region
+
+    context_object_name = 'regions'
+
+    template_name = 'region_list.html'
+
+class RegionDetailView(DetailView):
+    model = Region
+
+    context_object_name = 'regions_detail'
+
+    template_name = 'region_detail.html'

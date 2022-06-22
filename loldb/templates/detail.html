@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static%}
 {% block title %} LOL | {{ champions_detail.name }} {% endblock title %}
 
 {% block content %}
@@ -14,11 +14,44 @@
                 <p class="fst-italic fw-normal text-center">"{{ champions_detail.quote }}" ~ {{champions_detail.name}} </p>
             </div>
         </div>
-        <div class="row gx-4 gx-lg-5">
-            <div class="col-lg-6">
-                
+        <section class="text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Region -->
+                    <div class="col-lg-3">
+                        <div class="mx-auto m-5">
+                            <a href="{% url 'regions_detail' champions_detail.regionName.pk %}"><img src="{{ champions_detail.regionName.icon.url }}"/></a>
+                            <h3>Region</h3>
+                            <p class="lead mb-0">{{ champions_detail.regionName }}</p>
+                        </div>
+                    </div>
+                    <!-- Role -->
+                    <div class="col-lg-3">
+                        <div class="mx-auto m-5">
+                            <img style="width: 150px" src="{% static 'img/role.png' %}"/>
+                            <h3>Role</h3>
+                            <p class="lead mb-0">{{ champions_detail.role|capfirst }}</p>
+                        </div>
+                    </div>
+                    <!-- Blue Essence -->
+                    <div class="col-lg-3">
+                        <div class="mx-auto m-5">
+                            <img style="width: 150px" src="{% static 'img/be.png' %}"/>
+                            <h3>Blue Essence</h3>
+                            <p class="lead mb-0">{{ champions_detail.priceBe }}</p>
+                        </div>
+                    </div>
+                    <!-- Release Date -->
+                    <div class="col-lg-3">
+                        <div class="mx-auto m-5">
+                            <img style="width: 150px" src="{% static 'img/calendar.png' %}"/>
+                            <h3>Release Date</h3>
+                            <p class="lead mb-0">{{ champions_detail.releaseDate }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
     </div>
 {% endblock content %}

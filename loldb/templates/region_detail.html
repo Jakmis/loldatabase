@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+{% block title %} LOL | {{ regions_detail.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 my-5">
+        <div class="col-lg-12 text-center">
+            <img src="{{regions_detail.icon.url}}" style="width:150px" />
+        </div>
+    </div> 
+    <div class="row gx-4 gx-lg-5 my-5">
+        <div class="col-lg-12 text-center">
+             <h1>{{regions_detail.name}}</h1>
+        </div>
+    </div>
+    <div class="row gx-4 gx-lg-5 my-5">
+        <div class="col-lg-12 text-center">
+            <p class="px-5">{{regions_detail.bio}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
